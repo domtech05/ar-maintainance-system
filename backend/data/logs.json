@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1777988089312,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-05T13:34:49.312Z"
+  },
+  {
+    "id": 1778014004685,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-05T20:46:44.685Z"
+  },
+  {
+    "id": 1778014037917,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "admin1",
+    "timestamp": "2026-05-05T20:47:17.917Z"
+  }
+]

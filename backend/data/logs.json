@@ -26,5 +26,82 @@
     "message": "Failed login attempt",
     "username": "engineer1ngbfvc",
     "timestamp": "2026-05-06T11:32:54.436Z"
+  },
+  {
+    "id": 1778102492686,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:32.686Z"
+  },
+  {
+    "id": 1778102502150,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:42.150Z"
+  },
+  {
+    "id": 1778102502941,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:42.941Z"
+  },
+  {
+    "id": 1778102503606,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:43.606Z"
+  },
+  {
+    "id": 1778102503703,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:43.703Z"
+  },
+  {
+    "id": 1778102503803,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:43.803Z"
+  },
+  {
+    "id": 1778102504401,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:44.401Z"
+  },
+  {
+    "id": 1778102504486,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:44.486Z"
+  },
+  {
+    "id": 1778102505343,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:45.343Z"
+  },
+  {
+    "id": 1778102505359,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:45.359Z"
+  },
+  {
+    "id": 1778102505433,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:21:45.433Z"
   }
 ]

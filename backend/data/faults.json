@@ -20,5 +20,16 @@
     "status": "open",
     "reportedBy": "engineer1",
     "timestamp": "2026-05-06T22:00:35.198Z"
+  },
+  {
+    "id": 1778110208878,
+    "markerId": "marker-001",
+    "faultType": "Signal Failure",
+    "location": "Tunnel A",
+    "severity": "high",
+    "notes": "",
+    "status": "open",
+    "reportedBy": "engineer1",
+    "timestamp": "2026-05-06T23:30:08.878Z"
   }
 ]

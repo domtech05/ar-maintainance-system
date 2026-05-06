@@ -35,7 +35,7 @@ export default function Login() {
             if (data.user.role === "admin") {
                 navigate("/dashboard");
             } else {
-                navigate("/engineer");
+                navigate("/engineer/faults");
             }
         } catch (err) {
             setError(err.message);

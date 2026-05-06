@@ -376,5 +376,33 @@
     "message": "Successful login",
     "username": "admin1",
     "timestamp": "2026-05-06T22:14:02.110Z"
+  },
+  {
+    "id": 1778109118537,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T23:11:58.537Z"
+  },
+  {
+    "id": 1778109411031,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T23:16:51.031Z"
+  },
+  {
+    "id": 1778110208881,
+    "type": "fault",
+    "message": "New fault reported: Signal Failure",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T23:30:08.881Z"
+  },
+  {
+    "id": 1778110217488,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "admin1",
+    "timestamp": "2026-05-06T23:30:17.488Z"
   }
 ]

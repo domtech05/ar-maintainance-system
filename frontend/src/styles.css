@@ -220,3 +220,85 @@ button:hover {
         flex-direction: column;
     }
 }
+
+.security-note {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 14px;
+    background: #eff6ff;
+    color: #1e3a8a;
+}
+
+.security-note ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.dashboard-page {
+    width: min(1200px, 92vw);
+    margin: auto;
+    padding: 40px 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.secondary-button {
+    width: auto;
+    background: white;
+    color: #111827;
+    border: 1px solid #ccc;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.notice {
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #ecfdf3;
+    color: #027a48;
+    font-weight: bold;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checkbox-row input {
+    width: auto;
+    margin: 0;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 18px;
+    resize: vertical;
+}
+
+@media (max-width: 900px) {
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+}

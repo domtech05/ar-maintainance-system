@@ -48,7 +48,7 @@ export default function Login() {
                 <p className="eyebrow">Secure Prototype</p>
                 <h1>AR Maintenance Support System</h1>
                 <p className="muted">
-                    Login as an authorised engineer or administrator.
+                    Authorised access only. Login attempts are validated by the server and monitored for suspicious activity.
                 </p>
 
                 <form onSubmit={handleSubmit}>
@@ -74,9 +74,15 @@ export default function Login() {
 
                 {error && <p className="error">{error}</p>}
 
-                <div className="demo-details">
-                    <p><strong>Engineer:</strong> engineer1 / password123</p>
-                    <p><strong>Admin:</strong> admin1 / admin123</p>
+                <div className="security-note">
+                    <strong>Security features:</strong>
+                    <ul>
+                        <li>Hashed password verification</li>
+                        <li>Role-based access control</li>
+                        <li>JWT session token</li>
+                        <li>Failed login monitoring</li>
+                        <li>Temporary lockout after repeated failures</li>
+                    </ul>
                 </div>
             </section>
         </main>

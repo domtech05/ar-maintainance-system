@@ -103,5 +103,264 @@
     "message": "Failed login attempt - incorrect password",
     "username": "engineer1",
     "timestamp": "2026-05-06T21:21:45.433Z"
+  },
+  {
+    "id": 1778103116988,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:31:56.988Z"
+  },
+  {
+    "id": 1778103145178,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:25.178Z"
+  },
+  {
+    "id": 1778103146038,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:26.038Z"
+  },
+  {
+    "id": 1778103146755,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:26.755Z"
+  },
+  {
+    "id": 1778103147494,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:27.494Z"
+  },
+  {
+    "id": 1778103148120,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:28.120Z"
+  },
+  {
+    "id": 1778103148780,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:28.780Z"
+  },
+  {
+    "id": 1778103149466,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:29.466Z"
+  },
+  {
+    "id": 1778103150116,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:30.116Z"
+  },
+  {
+    "id": 1778103150801,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:32:30.801Z"
+  },
+  {
+    "id": 1778103207443,
+    "type": "security",
+    "message": "Failed login attempt - incorrect password",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:33:27.443Z"
+  },
+  {
+    "id": 1778103474397,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T21:37:54.397Z"
+  },
+  {
+    "id": 1778104816253,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T22:00:16.253Z"
+  },
+  {
+    "id": 1778104823961,
+    "type": "tool-check",
+    "message": "Tool check completed for: Rail Inspection",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T22:00:23.961Z"
+  },
+  {
+    "id": 1778104833673,
+    "type": "fault",
+    "message": "New fault reported: Signal Failure",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T22:00:33.673Z"
+  },
+  {
+    "id": 1778104835199,
+    "type": "fault",
+    "message": "New fault reported: Signal Failure",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T22:00:35.199Z"
+  },
+  {
+    "id": 1778104861793,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:01.793Z"
+  },
+  {
+    "id": 1778104866165,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:06.165Z"
+  },
+  {
+    "id": 1778104871380,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:11.380Z"
+  },
+  {
+    "id": 1778104872500,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:12.500Z"
+  },
+  {
+    "id": 1778104873336,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:13.336Z"
+  },
+  {
+    "id": 1778104873353,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:13.353Z"
+  },
+  {
+    "id": 1778104873624,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:13.624Z"
+  },
+  {
+    "id": 1778104874248,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:14.248Z"
+  },
+  {
+    "id": 1778104874360,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:14.360Z"
+  },
+  {
+    "id": 1778104875206,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:15.206Z"
+  },
+  {
+    "id": 1778104875971,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:15.971Z"
+  },
+  {
+    "id": 1778104876779,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:16.779Z"
+  },
+  {
+    "id": 1778104877725,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:17.725Z"
+  },
+  {
+    "id": 1778104878667,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:18.667Z"
+  },
+  {
+    "id": 1778104879720,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:01:19.720Z"
+  },
+  {
+    "id": 1778104952509,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:02:32.509Z"
+  },
+  {
+    "id": 1778104956975,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:02:36.975Z"
+  },
+  {
+    "id": 1778104957916,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:02:37.916Z"
+  },
+  {
+    "id": 1778104975370,
+    "type": "security",
+    "message": "Failed login attempt - unknown username",
+    "username": "admin",
+    "timestamp": "2026-05-06T22:02:55.370Z"
+  },
+  {
+    "id": 1778104985450,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "admin1",
+    "timestamp": "2026-05-06T22:03:05.450Z"
+  },
+  {
+    "id": 1778105146028,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-06T22:05:46.028Z"
   }
 ]

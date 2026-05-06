@@ -19,5 +19,12 @@
     "message": "Successful login",
     "username": "admin1",
     "timestamp": "2026-05-05T20:47:17.917Z"
+  },
+  {
+    "id": 1778067174436,
+    "type": "security",
+    "message": "Failed login attempt",
+    "username": "engineer1ngbfvc",
+    "timestamp": "2026-05-06T11:32:54.436Z"
   }
 ]

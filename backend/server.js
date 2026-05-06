@@ -7,8 +7,14 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 const JWT_SECRET = "dev-secret-key-change-in-production";
+const bcrypt = require("bcryptjs");
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+app.use(express.json());
 app.use(express.json());
 
 const dataPath = (filename) => path.join(__dirname, "data", filename);
@@ -65,18 +71,76 @@ app.get("/", (req, res) => {
     res.json({ message: "AR Maintenance Support System API is running" });
 });
 
-app.post("/api/login", (req, res) => {
-    const { username, password } = req.body;
-    const users = readJson("users.json");
+const failedLoginAttempts = {};
 
-    const user = users.find(
-        (u) => u.username === username && u.password === password
-    );
+app.post("/api/login", async (req, res) => {
+    const { username, password } = req.body;
+
+    if (
+        !username ||
+        !password ||
+        typeof username !== "string" ||
+        typeof password !== "string"
+    ) {
+        return res.status(400).json({
+            message: "Username and password are required."
+        });
+    }
+
+    const cleanUsername = username.trim().toLowerCase();
+
+    failedLoginAttempts[cleanUsername] = failedLoginAttempts[cleanUsername] || {
+        count: 0,
+        lockedUntil: null
+    };
+
+    const attempt = failedLoginAttempts[cleanUsername];
+
+    if (attempt.lockedUntil && Date.now() < attempt.lockedUntil) {
+        logEvent("security", "Blocked login attempt due to temporary lockout", cleanUsername);
+
+        return res.status(429).json({
+            message: "Too many failed login attempts. Please try again later."
+        });
+    }
+
+    const users = readJson("users.json");
+    const user = users.find((u) => u.username.toLowerCase() === cleanUsername);
 
     if (!user) {
-        logEvent("security", "Failed login attempt", username);
-        return res.status(401).json({ message: "Invalid username or password" });
+        attempt.count += 1;
+
+        if (attempt.count >= 5) {
+            attempt.lockedUntil = Date.now() + 2 * 60 * 1000;
+        }
+
+        logEvent("security", "Failed login attempt - unknown username", cleanUsername);
+
+        return res.status(401).json({
+            message: "Invalid username or password."
+        });
     }
+
+    const passwordMatches = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatches) {
+        attempt.count += 1;
+
+        if (attempt.count >= 5) {
+            attempt.lockedUntil = Date.now() + 2 * 60 * 1000;
+        }
+
+        logEvent("security", "Failed login attempt - incorrect password", cleanUsername);
+
+        return res.status(401).json({
+            message: "Invalid username or password."
+        });
+    }
+
+    failedLoginAttempts[cleanUsername] = {
+        count: 0,
+        lockedUntil: null
+    };
 
     const token = jwt.sign(
         {
@@ -85,10 +149,10 @@ app.post("/api/login", (req, res) => {
             role: user.role
         },
         JWT_SECRET,
-        { expiresIn: "2h" }
+        { expiresIn: "1h" }
     );
 
-    logEvent("auth", "Successful login", username);
+    logEvent("auth", "Successful login", user.username);
 
     res.json({
         message: "Login successful",

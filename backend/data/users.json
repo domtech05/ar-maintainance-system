@@ -2,13 +2,13 @@
   {
     "id": 1,
     "username": "engineer1",
-    "password": "password123",
+    "password": "$2a$10$Ehj/oN0gr.TVCVeRzJaIxeEZ4zMChYSoqDF3aeyCkrPP3PmqWq8Z6",
     "role": "engineer"
   },
   {
     "id": 2,
     "username": "admin1",
-    "password": "admin123",
+    "password": "$2a$10$KlCmSQ3qEVXHbWrRyGQ.1eREXeP/xh7zch1Gy8AAK8yiQGUUlQRF2",
     "role": "admin"
   }
 ]

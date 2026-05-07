@@ -6,6 +6,7 @@ import Tools from "./pages/Tools.jsx";
 import Security from "./pages/Security.jsx";
 import AppLayout from "./components/AppLayout.jsx";
 import ARView from "./pages/ARView.jsx";
+import MyTasks from "./pages/MyTasks.jsx";
 import { getToken, getUser } from "./api.js";
 
 function ProtectedRoute({ children, requiredRole }) {
@@ -59,6 +60,17 @@ export default function App() {
                     <ProtectedRoute requiredRole="admin">
                         <AppLayout>
                             <Dashboard />
+                        </AppLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/engineer/tasks"
+                element={
+                    <ProtectedRoute>
+                        <AppLayout>
+                            <MyTasks />
                         </AppLayout>
                     </ProtectedRoute>
                 }

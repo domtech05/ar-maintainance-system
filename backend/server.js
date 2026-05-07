@@ -81,7 +81,15 @@ function authenticateToken(req, res, next) {
 
 function requireAdmin(req, res, next) {
     if (req.user.role !== "admin") {
-        return res.status(403).json({ message: "Admin access required." });
+        logEvent("security", "Unauthorised admin action attempted", req.user.username);
+
+        return res.status(403).json({
+            ok: false,
+            error: {
+                type: "forbidden",
+                message: "Admin access required."
+            }
+        });
     }
 
     next();
@@ -213,6 +221,18 @@ const faultValidation = [
         .isLength({ max: 500 })
 ];
 
+app.get("/api/users", authenticateToken, requireAdmin, (req, res) => {
+    const users = readJson("users.json");
+
+    const safeUsers = users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        role: user.role
+    }));
+
+    res.json(safeUsers);
+});
+
 app.post("/api/faults", authenticateToken, faultValidation, (req, res) => {
     const errors = validationResult(req);
 
@@ -240,6 +260,12 @@ app.post("/api/faults", authenticateToken, (req, res) => {
     }
 
     const faults = readJson("faults.json");
+    faults.push(newFault);
+    writeJson("faults.json", faults);
+
+    logEvent("fault", `Fault reported: ${faultType}`, req.user.username);
+
+    res.status(201).json(newFault);
 
     const newFault = {
         id: Date.now(),
@@ -247,10 +273,13 @@ app.post("/api/faults", authenticateToken, (req, res) => {
         faultType,
         location,
         severity,
-        notes: notes || "",
+        notes,
         status: "open",
+        assignedTo: null,
+        adminNote: "",
         reportedBy: req.user.username,
-        timestamp: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
     };
 
     faults.push(newFault);
@@ -260,6 +289,192 @@ app.post("/api/faults", authenticateToken, (req, res) => {
 
     res.status(201).json(newFault);
 });
+
+app.get("/api/faults", authenticateToken, (req, res) => {
+    let faults = readJson("faults.json").map(normaliseFault);
+
+    if (req.query.assignedTo === "me") {
+        faults = faults.filter((fault) => fault.assignedTo === req.user.username);
+    }
+
+    if (req.query.status) {
+        faults = faults.filter((fault) => fault.status === req.query.status);
+    }
+
+    res.json(faults);
+});
+
+app.get("/api/faults/:id", authenticateToken, (req, res) => {
+    const faultId = Number(req.params.id);
+    const faults = readJson("faults.json").map(normaliseFault);
+
+    const fault = faults.find((fault) => fault.id === faultId);
+
+    if (!fault) {
+        return res.status(404).json({
+            ok: false,
+            error: {
+                type: "not_found",
+                message: "Fault not found."
+            }
+        });
+    }
+
+    res.json(fault);
+});
+
+app.patch("/api/faults/:id", authenticateToken, requireAdmin, (req, res) => {
+    const faultId = Number(req.params.id);
+    const { status, assignedTo, adminNote } = req.body;
+
+    const allowedStatuses = [
+        "open",
+        "assigned",
+        "in_progress",
+        "resolved",
+        "closed"
+    ];
+
+    if (status && !allowedStatuses.includes(status)) {
+        logEvent("security", "Blocked invalid fault status update", req.user.username);
+
+        return res.status(422).json({
+            ok: false,
+            error: {
+                type: "validation_error",
+                message: "Invalid fault status."
+            }
+        });
+    }
+
+    const faults = readJson("faults.json").map(normaliseFault);
+    const faultIndex = faults.findIndex((fault) => fault.id === faultId);
+
+    if (faultIndex === -1) {
+        return res.status(404).json({
+            ok: false,
+            error: {
+                type: "not_found",
+                message: "Fault not found."
+            }
+        });
+    }
+
+    const updatedFault = {
+        ...faults[faultIndex],
+        status: status || faults[faultIndex].status,
+        assignedTo: assignedTo ?? faults[faultIndex].assignedTo,
+        adminNote: adminNote ?? faults[faultIndex].adminNote,
+        updatedAt: new Date().toISOString()
+    };
+
+    faults[faultIndex] = updatedFault;
+    writeJson("faults.json", faults);
+
+    logEvent(
+        "ticket",
+        `Fault ${faultId} updated to ${updatedFault.status}`,
+        req.user.username
+    );
+
+    res.json(updatedFault);
+});
+
+app.patch("/api/faults/:id", authenticateToken, requireAdmin, (req, res) => {
+    const faultId = Number(req.params.id);
+    const { status, assignedTo, adminNote } = req.body;
+
+    const allowedStatuses = [
+        "open",
+        "assigned",
+        "in_progress",
+        "resolved",
+        "closed"
+    ];
+
+    if (status && !allowedStatuses.includes(status)) {
+        logEvent("security", "Blocked invalid fault status update", req.user.username);
+
+        return res.status(422).json({
+            ok: false,
+            error: {
+                type: "validation_error",
+                message: "Invalid fault status."
+            }
+        });
+    }
+
+    const faults = readJson("faults.json");
+    const faultIndex = faults.findIndex((fault) => fault.id === faultId);
+
+    if (faultIndex === -1) {
+        return res.status(404).json({
+            ok: false,
+            error: {
+                type: "not_found",
+                message: "Fault not found."
+            }
+        });
+    }
+
+    const updatedFault = {
+        ...faults[faultIndex],
+        status: status || faults[faultIndex].status,
+        assignedTo: assignedTo ?? faults[faultIndex].assignedTo,
+        adminNote: adminNote ?? faults[faultIndex].adminNote,
+        updatedAt: new Date().toISOString()
+    };
+
+    faults[faultIndex] = updatedFault;
+    writeJson("faults.json", faults);
+
+    logEvent(
+        "ticket",
+        `Fault ${faultId} updated: ${updatedFault.status}`,
+        req.user.username
+    );
+
+    res.json(updatedFault);
+});
+
+function requireAdmin(req, res, next) {
+    if (req.user.role !== "admin") {
+        logEvent("security", "Unauthorised admin action attempted", req.user.username);
+
+        return res.status(403).json({
+            ok: false,
+            error: {
+                type: "forbidden",
+                message: "Admin access required."
+            }
+        });
+    }
+
+    next();
+}
+
+app.get("/api/users", authenticateToken, requireAdmin, (req, res) => {
+    const users = readJson("users.json");
+
+    const safeUsers = users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        role: user.role
+    }));
+
+    res.json(safeUsers);
+});
+
+function normaliseFault(fault) {
+    return {
+        status: "open",
+        assignedTo: null,
+        adminNote: "",
+        createdAt: fault.timestamp || new Date().toISOString(),
+        updatedAt: fault.timestamp || new Date().toISOString(),
+        ...fault
+    };
+}
 
 app.post("/api/tools", authenticateToken, (req, res) => {
     const { taskName, toolsChecked, missingTools } = req.body;
@@ -288,20 +503,32 @@ app.post("/api/tools", authenticateToken, (req, res) => {
 });
 
 app.get("/api/dashboard", authenticateToken, requireAdmin, (req, res) => {
-    const faults = readJson("faults.json");
-    const tools = readJson("tools.json");
+    const faults = readJson("faults.json").map(normaliseFault);
+    const toolChecks = readJson("tools.json");
     const logs = readJson("logs.json");
 
     res.json({
         summary: {
-            openFaults: faults.filter((fault) => fault.status === "open").length,
+            openFaults: faults.filter((fault) => fault.status !== "closed").length,
             totalFaults: faults.length,
-            toolChecks: tools.length,
+            toolChecks: toolChecks.length,
             securityEvents: logs.filter((log) => log.type === "security").length
         },
+        statusCounts: {
+            open: faults.filter((fault) => fault.status === "open").length,
+            assigned: faults.filter((fault) => fault.status === "assigned").length,
+            in_progress: faults.filter((fault) => fault.status === "in_progress").length,
+            resolved: faults.filter((fault) => fault.status === "resolved").length,
+            closed: faults.filter((fault) => fault.status === "closed").length
+        },
+        severityCounts: {
+            low: faults.filter((fault) => fault.severity === "low").length,
+            medium: faults.filter((fault) => fault.severity === "medium").length,
+            high: faults.filter((fault) => fault.severity === "high").length
+        },
         recentFaults: faults.slice(-5).reverse(),
-        recentToolChecks: tools.slice(-5).reverse(),
-        recentLogs: logs.slice(-10).reverse()
+        recentToolChecks: toolChecks.slice(-5).reverse(),
+        recentLogs: logs.slice(-8).reverse()
     });
 });
 

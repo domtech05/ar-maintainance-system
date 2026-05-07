@@ -516,5 +516,26 @@
     "message": "Blocked invalid fault submission",
     "username": "engineer1",
     "timestamp": "2026-05-07T21:14:13.164Z"
+  },
+  {
+    "id": 1778190775781,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "admin1",
+    "timestamp": "2026-05-07T21:52:55.781Z"
+  },
+  {
+    "id": 1778190945172,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "admin1",
+    "timestamp": "2026-05-07T21:55:45.172Z"
+  },
+  {
+    "id": 1778196083648,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "admin1",
+    "timestamp": "2026-05-07T23:21:23.648Z"
   }
 ]

@@ -6,8 +6,13 @@ const path = require("path");
 
 const app = express();
 const PORT = 3000;
-const JWT_SECRET = "dev-secret-key-change-in-production";
+const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-key-change-in-production";
 const bcrypt = require("bcryptjs");
+
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const { body, validationResult } = require("express-validator");
+require("dotenv").config();
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -15,7 +20,22 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
-app.use(express.json());
+
+app.use(helmet());
+
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 150,
+    message: {
+        ok: false,
+        error: {
+            type: "rate_limit",
+            message: "Too many requests. Please try again later."
+        }
+    }
+});
+
+app.use("/api", apiLimiter);
 
 const dataPath = (filename) => path.join(__dirname, "data", filename);
 
@@ -164,7 +184,50 @@ app.post("/api/login", async (req, res) => {
     });
 });
 
-app.get("/api/faults", authenticateToken, (req, res) => {
+const faultValidation = [
+    body("markerId")
+        .trim()
+        .isLength({ min: 3, max: 40 })
+        .matches(/^[a-zA-Z0-9-_]+$/),
+
+    body("faultType")
+        .trim()
+        .isIn([
+            "Signal Failure",
+            "Electrical Issue",
+            "Structural Crack",
+            "Equipment Degradation"
+        ]),
+
+    body("location")
+        .trim()
+        .isLength({ min: 2, max: 80 })
+        .matches(/^[a-zA-Z0-9\s-_]+$/),
+
+    body("severity")
+        .isIn(["low", "medium", "high"]),
+
+    body("notes")
+        .optional({ checkFalsy: true })
+        .trim()
+        .isLength({ max: 500 })
+];
+
+app.post("/api/faults", authenticateToken, faultValidation, (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        logEvent("security", "Blocked invalid fault submission", req.user.username);
+
+        return res.status(422).json({
+            ok: false,
+            error: {
+                type: "validation_error",
+                message: "Invalid fault submission.",
+                details: errors.array()
+            }
+        });
+    }
     const faults = readJson("faults.json");
     res.json(faults);
 });

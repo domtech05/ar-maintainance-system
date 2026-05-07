@@ -5,6 +5,7 @@ import Faults from "./pages/Faults.jsx";
 import Tools from "./pages/Tools.jsx";
 import Security from "./pages/Security.jsx";
 import AppLayout from "./components/AppLayout.jsx";
+import ARView from "./pages/ARView.jsx";
 import { getToken, getUser } from "./api.js";
 
 function ProtectedRoute({ children, requiredRole }) {
@@ -73,6 +74,18 @@ export default function App() {
                     </ProtectedRoute>
                 }
             />
+
+            <Route
+                path="/ar"
+                element={
+                    <ProtectedRoute>
+                        <AppLayout>
+                            <ARView />
+                        </AppLayout>
+                    </ProtectedRoute>
+                }
+            />
+
         </Routes>
     );
 }

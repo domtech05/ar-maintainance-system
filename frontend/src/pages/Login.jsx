@@ -46,9 +46,9 @@ export default function Login() {
         <main className="page center-page">
             <section className="card login-card">
                 <p className="eyebrow">Secure Prototype</p>
-                <h1>AR Maintenance Support System</h1>
+                <h1>TrackFlow</h1>
                 <p className="muted">
-                    Authorised access only. Login attempts are validated by the server and monitored for suspicious activity.
+                    Authorised access only. Login attempts are logged and monitored.
                 </p>
 
                 <form onSubmit={handleSubmit}>
@@ -74,16 +74,6 @@ export default function Login() {
 
                 {error && <p className="error">{error}</p>}
 
-                <div className="security-note">
-                    <strong>Security features:</strong>
-                    <ul>
-                        <li>Hashed password verification</li>
-                        <li>Role-based access control</li>
-                        <li>JWT session token</li>
-                        <li>Failed login monitoring</li>
-                        <li>Temporary lockout after repeated failures</li>
-                    </ul>
-                </div>
             </section>
         </main>
     );

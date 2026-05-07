@@ -446,5 +446,33 @@
     "message": "Successful login",
     "username": "engineer1",
     "timestamp": "2026-05-07T10:13:29.113Z"
+  },
+  {
+    "id": 1778150317822,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T10:38:37.822Z"
+  },
+  {
+    "id": 1778150384978,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T10:39:44.978Z"
+  },
+  {
+    "id": 1778150401103,
+    "type": "tool-check",
+    "message": "Tool check completed for: Rail Inspection",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T10:40:01.103Z"
+  },
+  {
+    "id": 1778184182266,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T20:03:02.266Z"
   }
 ]

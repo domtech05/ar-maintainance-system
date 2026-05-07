@@ -55,7 +55,6 @@ export default function Login() {
                     <label>Username</label>
                     <input
                         name="username"
-                        value={form.username}
                         onChange={updateField}
                         required
                     />
@@ -64,7 +63,6 @@ export default function Login() {
                     <input
                         name="password"
                         type="password"
-                        value={form.password}
                         onChange={updateField}
                         required
                     />

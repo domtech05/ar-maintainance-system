@@ -58,6 +58,7 @@ button {
     color: white;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 button:hover {
@@ -84,6 +85,7 @@ label {
     display: block;
     font-weight: 700;
     margin-bottom: 8px;
+    margin-top: 15px;
 }
 
 input:focus,

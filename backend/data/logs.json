@@ -418,5 +418,33 @@
     "message": "Successful login",
     "username": "engineer1",
     "timestamp": "2026-05-06T23:42:25.501Z"
+  },
+  {
+    "id": 1778147879654,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T09:57:59.654Z"
+  },
+  {
+    "id": 1778147911363,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T09:58:31.363Z"
+  },
+  {
+    "id": 1778148417099,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T10:06:57.099Z"
+  },
+  {
+    "id": 1778148809113,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "engineer1",
+    "timestamp": "2026-05-07T10:13:29.113Z"
   }
 ]

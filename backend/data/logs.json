@@ -537,5 +537,12 @@
     "message": "Successful login",
     "username": "admin1",
     "timestamp": "2026-05-07T23:21:23.648Z"
+  },
+  {
+    "id": 1778231699999,
+    "type": "auth",
+    "message": "Successful login",
+    "username": "admin1",
+    "timestamp": "2026-05-08T09:14:59.999Z"
   }
 ]

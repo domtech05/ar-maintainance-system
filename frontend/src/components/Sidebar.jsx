@@ -9,10 +9,10 @@ export default function Sidebar() {
         <aside className="sidebar">
             <div>
                 <div className="brand">
-                    <span className="brand-mark">AR</span>
+                    <span className="brand-mark">TF</span>
                     <div>
-                        <strong>MaintSec</strong>
-                        <small>Secure AR Ops</small>
+                        <strong>TrackFlow</strong>
+                        <small>AR Fault logging</small>
                     </div>
                 </div>
 

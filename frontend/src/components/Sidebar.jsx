@@ -17,17 +17,16 @@ export default function Sidebar() {
                 </div>
 
                 <nav className="side-nav">
-                    <NavLink to="/engineer/faults">Fault Reporting</NavLink>
-                    <NavLink to="/engineer/tools">Tool Check</NavLink>
-                    <NavLink to="/engineer/tasks">My Tasks</NavLink>
-                    <NavLink to="/ar">AR View</NavLink>
-
                     {isAdmin && (
                         <>
                             <NavLink to="/dashboard">Dashboard</NavLink>
                             <NavLink to="/security">Security Logs</NavLink>
                         </>
                     )}
+                    <NavLink to="/engineer/faults">Fault Reporting</NavLink>
+                    <NavLink to="/engineer/tools">Tool Check</NavLink>
+                    <NavLink to="/engineer/tasks">My Tasks</NavLink>
+                    <NavLink to="/ar">AR View</NavLink>
                 </nav>
             </div>
 
